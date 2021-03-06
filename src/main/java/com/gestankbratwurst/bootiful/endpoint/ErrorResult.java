@@ -13,12 +13,12 @@ import javax.ws.rs.core.Response;
  */
 public class ErrorResult implements CalculationResult {
 
+  private final String error;
+
   public ErrorResult(final String errorMessage) {
     this.error = errorMessage;
   }
-
-  private final String error;
-
+  
   @Override
   public Response getAsDecoratedResponse() {
     return Response.status(400).entity(this).build();

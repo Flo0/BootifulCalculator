@@ -35,13 +35,13 @@ public enum NumberType {
     return "[" + Arrays.stream(NumberType.values()).map(NumberType::getIdentifier).collect(Collectors.joining(", ")) + "]";
   }
 
+  private final String identifier;
+  private final ArithmeticEvaluator<?> evaluator;
+
   NumberType(final String identifier, final ArithmeticEvaluator<?> evaluator) {
     this.identifier = identifier;
     this.evaluator = evaluator;
   }
-
-  private final String identifier;
-  private final ArithmeticEvaluator<?> evaluator;
 
   public String getIdentifier() {
     return this.identifier;

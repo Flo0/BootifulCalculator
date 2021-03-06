@@ -19,12 +19,12 @@ import java.util.List;
  */
 public class EvaluationContext {
 
+  private final CalculationPayload payload;
+
   public EvaluationContext(final CalculationPayload payload) {
     this.payload = payload;
   }
-
-  private final CalculationPayload payload;
-
+  
   public CalculationResult produceResult() {
     final PayloadFault fault = this.checkPayloadState();
     if (fault.isJustified()) {

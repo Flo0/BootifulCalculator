@@ -13,12 +13,12 @@ import javax.ws.rs.core.Response;
  */
 public class SuccessCalculationResult<T extends Number> implements CalculationResult {
 
+  private final T result;
+
   public SuccessCalculationResult(T result) {
     this.result = result;
   }
-
-  private final T result;
-
+  
   @Override
   public Response getAsDecoratedResponse() {
     return Response.ok(this).build();

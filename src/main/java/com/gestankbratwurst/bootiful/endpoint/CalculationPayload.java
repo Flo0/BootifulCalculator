@@ -16,15 +16,15 @@ import java.util.Arrays;
  */
 public class CalculationPayload {
 
+  private final BigDecimal[] values;
+  private final ArithmeticOperation operation;
+  private final NumberType type;
+
   public CalculationPayload(final BigDecimal[] values, final String operation, final String type) {
     this.values = values;
     this.operation = ArithmeticOperation.fromIdentifier(operation);
     this.type = NumberType.fromIdentifier(type);
   }
-
-  private final BigDecimal[] values;
-  private final ArithmeticOperation operation;
-  private final NumberType type;
 
   public BigDecimal[] getValues() {
     return this.values;

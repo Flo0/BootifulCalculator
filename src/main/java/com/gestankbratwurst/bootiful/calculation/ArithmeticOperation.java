@@ -19,18 +19,8 @@ public enum ArithmeticOperation {
   MULTIPLY("mul"),
   DIVIDE("div");
 
-  ArithmeticOperation(final String identifier) {
-    this.identifier = identifier;
-  }
-
-  private final String identifier;
-
-  public String getIdentifier() {
-    return this.identifier;
-  }
-
-  public static ArithmeticOperation fromIdentifier(String identifier) {
-    for (ArithmeticOperation operation : ArithmeticOperation.values()) {
+  public static ArithmeticOperation fromIdentifier(final String identifier) {
+    for (final ArithmeticOperation operation : ArithmeticOperation.values()) {
       if (operation.identifier.equals(identifier)) {
         return operation;
       }
@@ -38,8 +28,20 @@ public enum ArithmeticOperation {
     return null;
   }
 
+  private final String identifier;
+
+  ArithmeticOperation(final String identifier) {
+    this.identifier = identifier;
+  }
+
+  public String getIdentifier() {
+    return this.identifier;
+  }
+
   public static String getSupportedOperationsString() {
-    return "[" + Arrays.stream(ArithmeticOperation.values()).map(ArithmeticOperation::getIdentifier).collect(Collectors.joining(", ")) + "]";
+    return "[" +
+        Arrays.stream(ArithmeticOperation.values()).map(ArithmeticOperation::getIdentifier).collect(Collectors.joining(", "))
+        + "]";
   }
 
 }
