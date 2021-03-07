@@ -2,6 +2,7 @@ package com.gestankbratwurst.bootiful.calculation.evaluators;
 
 import com.gestankbratwurst.bootiful.endpoint.SuccessCalculationResult;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -54,8 +55,12 @@ public class PreciseFloatEvaluator extends ArithmeticEvaluator<BigDecimal> {
   protected SuccessCalculationResult<BigDecimal> divide(final BigDecimal... values) {
     final BigDecimal result = Arrays.stream(Arrays.copyOfRange(values, 1, values.length))
         .filter(Objects::nonNull)
-        .reduce(values[0], BigDecimal::divide);
+        .reduce(values[0], this::preciseBinaryDivision);
     return new SuccessCalculationResult<>(result);
+  }
+
+  private BigDecimal preciseBinaryDivision(final BigDecimal base, final BigDecimal divisor) {
+    return base.divide(divisor, 100, RoundingMode.HALF_EVEN).stripTrailingZeros();
   }
 
 }
